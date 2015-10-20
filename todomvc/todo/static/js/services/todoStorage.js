@@ -17,7 +17,8 @@ angular.module('todomvc')
 			.then(function () {
 				return $injector.get('api');
 			}, function () {
-				return $injector.get('localStorage');
+				// return $injector.get('localStorage');
+				return $injector.get('api');
 			});
 	})
 
@@ -30,6 +31,8 @@ angular.module('todomvc')
 			api: $resource('/api/todos/:id', null,
 				{
 					update: { method:'PUT' }
+				}, {
+					stripTrailingSlashes: false
 				}
 			),
 
